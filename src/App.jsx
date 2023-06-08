@@ -1,4 +1,5 @@
 import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
+import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { AllCharacters } from './pages/AllCharacters';
 import { AllFilms } from './pages/AllFilms';
@@ -14,6 +15,7 @@ import { SingleSpecie } from './pages/SingleSpecie';
 function App() {
   return (
     <>
+      <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/characters" element={<AllCharacters />} />
