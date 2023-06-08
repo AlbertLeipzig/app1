@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 export const Header = () => {
   return (
-    <header>
-      <h1>Star Wars</h1>
+    <header className='flex justify-between px-20 py-10'>
+      <h2 className="text-2xl">Star Wars</h2>
       <nav>
-        <ul>
+        <ul className='flex gap-x-5'>
           <li>
             <NavLink to="/spaceships">Spaceships</NavLink>
           </li>
