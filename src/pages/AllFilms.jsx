@@ -1,43 +1,18 @@
-// Order Films according to id
-// Separate and order producers
-
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext';
 
 export const AllFilms = () => {
   const { films } = useContext(DataContext);
-
-  const [producers, setProducers] = useState([]);
-
-  function getNonRepeatedNames(names) {
-    const uniqueNames = [];
-    const seenNames = new Set();
-
-    names.forEach((entry) => {
-      const entryNames = entry.split(' ');
-
-      entryNames.forEach((name) => {
-        if (!seenNames.has(name)) {
-          seenNames.add(name);
-          uniqueNames.push(name);
-        }
-      });
-    });
-
-    return uniqueNames;
-  }
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (films) {
-      const filmProducers = films.map((film) => film.producer);
-      const nonRepeatedProducers = getNonRepeatedNames(filmProducers);
-      setProducers(nonRepeatedProducers);
-    }
+    films && setLoading(false);
   }, [films]);
 
   return (
     <section className="all-films">
       <h1>All Films</h1>
+      <div className="loading">{loading && <h2>Loading...</h2>}</div>
       <div className="films-container">
         {films &&
           films.map((film) => (
@@ -69,14 +44,13 @@ export const AllFilms = () => {
                   </li>
                 ))}
               </ul>
-              <ul>
-                {producers.map((producer) => (
-                  <li>{producer}</li>
-                ))}
-              </ul>
             </article>
           ))}
       </div>
     </section>
   );
 };
+
+
+// Order Films according to id
+// Separate and order producers

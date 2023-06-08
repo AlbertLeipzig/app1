@@ -1,12 +1,18 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext';
 
 export const AllSpecies = () => {
   const { species } = useContext(DataContext);
-  species && console.log(species);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    species && setLoading(false);
+  }, [species]);
+
   return (
     <section className="all-species">
       <h1>All Species</h1>
+      {loading && <h2>Loading...</h2>}
+      <div className="loading">{loading && <h2>Loading...</h2>}</div>
       <div className="species-container">
         {species &&
           species.map((specie) => (

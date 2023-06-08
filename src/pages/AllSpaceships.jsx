@@ -1,14 +1,19 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../context/DataContext';
 
 export const AllSpaceships = () => {
   const { starships, data } = useContext(DataContext);
-  starships && console.log(starships);
-  data && console.log(data);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    starships && setLoading(false);
+  }, [starships]);
 
   return (
     <section className="all-spaceships">
       <h1>All Spaceships</h1>
+      {loading && <h2>Loading...</h2>}
+      <div className="loading">{loading && <h2>Loading...</h2>}</div>
       {starships &&
         starships.map((spaceship) => (
           <article key={spaceship.name}>
@@ -40,4 +45,3 @@ export const AllSpaceships = () => {
     </section>
   );
 };
-
