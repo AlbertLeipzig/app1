@@ -4,7 +4,7 @@ const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [data, setData] = useState({});
-
+  
   const getAllData = async () => {
     try {
       const res = await fetch('https://swapi.dev/api/');
@@ -33,7 +33,6 @@ const DataProvider = ({ children }) => {
   useEffect(() => {
     getAllData();
   }, []);
-
 
   return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
 };

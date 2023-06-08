@@ -3,7 +3,6 @@ import { DataContext } from '../context/DataContext';
 
 export const AllCharacters = () => {
   const { people } = useContext(DataContext);
-  console.log(people);
 
   return (
     <section className="all-characters">
